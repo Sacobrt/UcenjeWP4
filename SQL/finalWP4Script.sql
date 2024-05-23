@@ -40,7 +40,8 @@ CREATE TABLE Comments (
 	createdAt DATETIME NOT NULL
 );
 
-ALTER TABLE Followers ADD FOREIGN KEY (userID) references Users(ID);
-ALTER TABLE Posts ADD FOREIGN KEY (userID) references Users(ID);
-ALTER TABLE Comments ADD FOREIGN KEY (userID) references Users(ID);
-ALTER TABLE Comments ADD FOREIGN KEY (postID) references Posts(ID);
+ALTER TABLE Followers ADD FOREIGN KEY (userID) REFERENCES Users(ID);
+ALTER TABLE Followers ADD FOREIGN KEY (followerUserID) REFERENCES Users(ID);
+ALTER TABLE Posts ADD FOREIGN KEY (userID) REFERENCES Users(ID);
+ALTER TABLE Comments ADD FOREIGN KEY (userID) REFERENCES Users(ID);
+ALTER TABLE Comments ADD FOREIGN KEY (postID) REFERENCES Posts(ID);
