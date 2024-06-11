@@ -1,7 +1,13 @@
 ﻿
 using UcenjeCS;
 
-E01Z3.Izvedi();
+E03Z2.Izvedi();
+//E05Nizovi.Izvedi();
+//E04Z1.Izvedi();
+//E04UvjetnoGrananjeSwitch.Izvedi();
+//E03Z1.Izvedi();
+//E03UvjetnoGranjanjeIf.Izvedi();
+//E01Z3.Izvedi();
 //E01Z2.Izvedi();
 //E01Z1.Izvedi();
 //E02VarijableTipoviPodatakaOperatori.Izvedi();
