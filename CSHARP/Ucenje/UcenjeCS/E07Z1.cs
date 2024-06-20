@@ -11,6 +11,20 @@ namespace UcenjeCS
             // unos 10 ispis 30
             // unos 12 ispis 42
 
+            Console.Write("Unesite cijeli broj: ");
+            int b = int.Parse(Console.ReadLine());
+            int i = 1;
+            int a = 0;
+
+            while (i <= b)
+            {
+                if (i % 2 == 0)
+                {
+                    a += i;
+                }
+                i++;
+            }
+            Console.WriteLine(a);
         }
     }
 }
