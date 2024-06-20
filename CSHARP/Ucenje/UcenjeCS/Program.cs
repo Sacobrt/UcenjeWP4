@@ -1,7 +1,8 @@
 ﻿
 using UcenjeCS;
 
-E10Z2.Izvedi();
+BrzaForPetlja.Izvedi();
+//E10Z2.Izvedi();
 //E10Z1.Izvedi();
 //E10TryCatch.Izvedi();
 //E09ForEachPetlja.Izvedi();
