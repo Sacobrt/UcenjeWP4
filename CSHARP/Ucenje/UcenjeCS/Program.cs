@@ -1,7 +1,14 @@
 ﻿
 using UcenjeCS;
 
-CiklicnaTablica.Izvedi();
+E10Z2.Izvedi();
+//E10Z1.Izvedi();
+//E10TryCatch.Izvedi();
+//E09ForEachPetlja.Izvedi();
+//E08DoWhilePetlja.Izvedi();
+//E07Z1.Izvedi();
+//E07WhilePetlja.Izvedi();
+//CiklicnaTablica.Izvedi();
 //E06ForPetlja.Izvedi();
 //E05Z3.Izvedi();
 //E05Z2.Izvedi();
