@@ -1,7 +1,8 @@
 ﻿
 using UcenjeCS;
 
-E06ForPetlja.Izvedi();
+CiklicnaTablica.Izvedi();
+//E06ForPetlja.Izvedi();
 //E05Z3.Izvedi();
 //E05Z2.Izvedi();
 //E05Z1.Izvedi();
