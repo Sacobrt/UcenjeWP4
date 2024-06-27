@@ -5,42 +5,8 @@ namespace UcenjeCS
     {
         public static void Izvedi()
         {
-            int rows, columns;
-            while (true)
-            {
-                Console.Write("Unesi broj redova: ");
-                try
-                {
-                    rows = int.Parse(Console.ReadLine());
-                    if (rows < 1 || rows > 20)
-                    {
-                        Console.WriteLine("Broj redova mora biti veći od 0 i manji od 20!");
-                        continue;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Niste unijeli ispravan broj za redove!");
-                    continue;
-                }
-
-                Console.Write("Unesi broj stupaca: ");
-                try
-                {
-                    columns = int.Parse(Console.ReadLine());
-                    if (columns < 1 || columns > 20)
-                    {
-                        Console.WriteLine("Broj stupaca mora biti veći od 0 i manji od 20!");
-                        continue;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Niste unijeli ispravan broj za stupce!");
-                    continue;
-                }
-                break;
-            }
+            int rows = Pomocno.UcitajCijeliBroj("Unesi broj redova", 1, 20);
+            int columns = Pomocno.UcitajCijeliBroj("Unesi broj stupaca", 1, 20);
 
             int[,] table = new int[rows, columns];
             int bottomRow = rows - 1;
