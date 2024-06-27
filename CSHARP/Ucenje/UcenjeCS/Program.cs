@@ -1,7 +1,14 @@
 ﻿
 using UcenjeCS;
 
-BrzaForPetlja.Izvedi();
+//Zadaci
+//BrzaForPetlja.Izvedi();
+//CiklicnaTablica.Izvedi();
+
+//Učenje
+E12Rekurzija.Izvedi();
+//E11Z1.Izvedi();
+//E11Metode.Izvedi();
 //E10Z2.Izvedi();
 //E10Z1.Izvedi();
 //E10TryCatch.Izvedi();
@@ -9,7 +16,6 @@ BrzaForPetlja.Izvedi();
 //E08DoWhilePetlja.Izvedi();
 //E07Z1.Izvedi();
 //E07WhilePetlja.Izvedi();
-//CiklicnaTablica.Izvedi();
 //E06ForPetlja.Izvedi();
 //E05Z3.Izvedi();
 //E05Z2.Izvedi();
