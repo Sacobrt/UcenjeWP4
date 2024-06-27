@@ -9,8 +9,10 @@ namespace UcenjeCS.E13KlasaObjekt
         {
             Osoba osoba = new Osoba();
 
-            osoba.Ime = "Pero";
-            osoba.Prezime = "Perić";
+            string ime = Pomocno.UcitajString("Unesi Ime");
+            string prezime = Pomocno.UcitajString("Unesi Prezime");
+            osoba.Ime = ime;
+            osoba.Prezime = prezime;
 
             Console.WriteLine(osoba.ImePrezime());
 
