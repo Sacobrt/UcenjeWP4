@@ -5,7 +5,7 @@ namespace UcenjeCS
     {
         public static int UcitajCijeliBroj()
         {
-            while(true)
+            while (true)
             {
                 try
                 {
@@ -32,6 +32,19 @@ namespace UcenjeCS
                 {
                     Console.WriteLine("Pogreška prilikom unosa!");
                 }
+            }
+        }
+        public static int UcitajCijeliBroj(string poruka, int min, int max)
+        {
+            int i;
+            while (true)
+            {
+                Console.Write(poruka + ": ");
+                if (int.TryParse(Console.ReadLine(), out i) && i >= min && i <= max)
+                {
+                    return i;
+                }
+                Console.WriteLine("Broj mora biti od " + min + " do " + max + "!");
             }
         }
     }
