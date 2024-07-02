@@ -5,9 +5,11 @@ using UcenjeCS.E13KlasaObjekt;
 //Zadaci
 //BrzaForPetlja.Izvedi();
 //CiklicnaTablica.Izvedi();
-LjubavniKalkulator.Izvedi();
+//LjubavniKalkulator.Izvedi();
 
 //Učenje
+new UcenjeCS.E15RadSStringovima.Program();
+//new UcenjeCS.E14Nasljedivanje.Program();
 //UcenjeCS.E13KlasaObjekt.Program.Izvedi();
 //E12Rekurzija.Izvedi();
 //E11Z1.Izvedi();
