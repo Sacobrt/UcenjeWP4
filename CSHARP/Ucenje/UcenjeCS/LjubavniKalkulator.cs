@@ -40,13 +40,12 @@ namespace UcenjeCS
             combined += (sum1 + sum2).ToString();
             return ConvertNumbers(name1, name2, index + 1, combined);
         }
-        private static int CompressDigits(string num)
+        private static int CompressDigits(string num, string result = "")
         {
             if (num.Length <= 2)
             {
                 return int.Parse(num);
             }
-            string result = "";
             for (int i = 0; i < num.Length / 2; i++)
             {
                 int sum = (num[i] - '0') + (num[num.Length - 1 - i] - '0');
