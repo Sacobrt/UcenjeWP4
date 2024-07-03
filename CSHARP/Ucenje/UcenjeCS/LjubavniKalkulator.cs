@@ -29,31 +29,23 @@ namespace UcenjeCS
                 }
             } while (Pomocno.UcitajString("Za prekid aplikacije - q") != "q");
         }
-        private static int ConvertNumbers(string name1, string name2)
+        private static int ConvertNumbers(string name1, string name2, int index = 0, string combined = "")
         {
-            string combined = "";
-            for (int i = 0; i < Math.Max(name1.Length, name2.Length); i++)
+            if (index >= Math.Max(name1.Length, name2.Length))
             {
-                int sum1 = (i < name1.Length) ? CountLetters(name1, name1[i]) + CountLetters(name2, name1[i]) : 0;
-                int sum2 = (i < name2.Length) ? CountLetters(name1, name2[i]) + CountLetters(name2, name2[i]) : 0;
-                combined += (sum1 + sum2).ToString();
+                return CompressDigits(combined);
             }
-            return int.Parse(CompressDigits(combined));
+            int sum1 = (index < name1.Length) ? name1.Count(c => c == name1[index]) + name2.Count(c => c == name1[index]) : 0;
+            int sum2 = (index < name2.Length) ? name1.Count(c => c == name2[index]) + name2.Count(c => c == name2[index]) : 0;
+            combined += (sum1 + sum2).ToString();
+            return ConvertNumbers(name1, name2, index + 1, combined);
         }
-        private static int CountLetters(string name, char c)
+        private static int CompressDigits(string num)
         {
-            int count = 0;
-            foreach (char letter in name)
+            if (num.Length <= 2)
             {
-                if (letter == c)
-                {
-                    count++;
-                }
+                return int.Parse(num);
             }
-            return count;
-        }
-        private static string CompressDigits(string num)
-        {
             string result = "";
             for (int i = 0; i < num.Length / 2; i++)
             {
@@ -64,15 +56,15 @@ namespace UcenjeCS
             {
                 result += num[num.Length / 2];
             }
-            return result;
+            return CompressDigits(result);
         }
         private static int CalculateLove(int love)
         {
-            while (love > 100)
+            if (love <= 100)
             {
-                love = int.Parse(CompressDigits(love.ToString()));
+                return love;
             }
-            return love;
+            return CalculateLove(CompressDigits(love.ToString()));
         }
     }
 }
