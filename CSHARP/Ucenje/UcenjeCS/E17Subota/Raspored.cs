@@ -24,6 +24,10 @@ namespace UcenjeCS.E17Subota
                 {
                     datumDo = datumOd.AddDays(13);
                 }
+                if (datumOd.Month == 10 && datumDo.Month == 11)
+                {
+                    datumDo = datumOd.AddDays(20);
+                }
                 tjedan = datumOd.AddDays(6);
 
                 Console.WriteLine("{0} - {1}, Stan {2}",
