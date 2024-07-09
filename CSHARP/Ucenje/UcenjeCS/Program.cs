@@ -8,7 +8,8 @@ using UcenjeCS.E13KlasaObjekt;
 //LjubavniKalkulator.Izvedi();
 
 //Učenje
-new UcenjeCS.E17Subota.Raspored();
+new UcenjeCS.E18KonzolnaAplikacija.Izbornik();
+//new UcenjeCS.E17Subota.Raspored();
 //new UcenjeCS.E17Subota.Program();
 //new UcenjeCS.E16GenericiLambdaEkstenzije.Program();
 //new UcenjeCS.E15RadSStringovima.Program();
