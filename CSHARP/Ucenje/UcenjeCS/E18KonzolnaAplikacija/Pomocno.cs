@@ -3,6 +3,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
 {
     internal class Pomocno
     {
+        public static bool DEV = false;
         internal static bool UcitajBool(string poruka, string trueValue)
         {
             Console.Write(poruka + ": ");

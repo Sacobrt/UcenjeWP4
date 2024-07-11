@@ -1,15 +1,27 @@
 ﻿
+
+using Newtonsoft.Json;
+
 namespace UcenjeCS.E18KonzolnaAplikacija
 {
     internal class Izbornik
     {
-        public ObradaSmjer ObradaSmjer { get; set; } = new ObradaSmjer(); // da ne mora raditi instancu u konstruktoru
-        public ObradaPolaznik ObradaPolaznik { get; set; } = new ObradaPolaznik();
-        public ObradaGrupa ObradaGrupa { get; set; } = new ObradaGrupa();
+        public ObradaSmjer ObradaSmjer { get; set; } // da ne mora raditi instancu u konstruktoru
+        public ObradaPolaznik ObradaPolaznik { get; set; }
+        public ObradaGrupa ObradaGrupa { get; set; }
         public Izbornik()
         {
+            //Pomocno.DEV = true;
+            ObradaSmjer = new ObradaSmjer();
+            ObradaPolaznik = new ObradaPolaznik();
+            ObradaGrupa = new ObradaGrupa(this);
+            UcitajPodatke();
             PozdravnaPoruka();
             PrikaziIzbornik();
+        }
+        private void UcitajPodatke()
+        {
+
         }
         private void PrikaziIzbornik()
         {
@@ -41,8 +53,18 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     break;
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
+                    SpremiPodatke();
                     break;
             }
+        }
+        private void SpremiPodatke()
+        {
+            if (Pomocno.DEV)
+            {
+                return;
+            }
+
+            //Console.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
         }
         private void PozdravnaPoruka()
         {
