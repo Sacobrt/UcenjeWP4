@@ -11,7 +11,8 @@ namespace UcenjeCS.E18KonzolnaAplikacija.Model
 
         public override string ToString()
         {
-            return "Sifra=" + Sifra + ", Naziv=" + Naziv + ", Trajanje=" + Trajanje + ", Cijena=" + Cijena + ", IzvodiSeOd=" + IzvodiSeOd + ", Verificiran=" + Verificiran;
+            return "Sifra=" + Sifra + " ,Naziv=" + Naziv + ", Trajanje=" + Trajanje + ", Cijena=" + Cijena +
+                ", IzvodiSeOd=" + IzvodiSeOd + ", Verificiran=" + Verificiran;
         }
     }
 }

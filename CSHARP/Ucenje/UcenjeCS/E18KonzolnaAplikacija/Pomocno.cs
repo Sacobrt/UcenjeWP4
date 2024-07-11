@@ -3,19 +3,20 @@ namespace UcenjeCS.E18KonzolnaAplikacija
 {
     internal class Pomocno
     {
-        internal static bool? UcitajBool(string poruka, string trueValue)
+        internal static bool UcitajBool(string poruka, string trueValue)
         {
             Console.Write(poruka + ": ");
             return Console.ReadLine().Trim().ToLower() == trueValue;
         }
-        internal static DateTime? UcitajDatum(string poruka, bool kontrolaPrijeDanasnjegDatuma)
+        internal static DateTime UcitajDatum(string poruka, bool kontrolaPrijeDanasnjegDatuma)
         {
             DateTime d;
             while (true)
             {
                 try
                 {
-                    Console.WriteLine("Format unosa je yyyy-MM-dd, za današnji datum {0}", DateTime.Now.ToString("yyyy-MM-dd"));
+                    Console.WriteLine("Format unosa je yyyy-MM-dd, za današnji datum {0}",
+                        DateTime.Now.ToString("yyyy-MM-dd"));
                     if (kontrolaPrijeDanasnjegDatuma)
                     {
                         Console.WriteLine("Uneseni datum ne smije biti prije današnjeg datuma!");
@@ -34,7 +35,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                 }
             }
         }
-        internal static float? UcitajDecimalniBroj(string poruka, int min, float max)
+        internal static float UcitajDecimalniBroj(string poruka, int min, float max)
         {
             float b;
             while (true)
@@ -68,10 +69,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     {
                         throw new Exception();
                     }
-                    else
-                    {
-                        return b;
-                    }
+                    return b;
                 }
                 catch
                 {

@@ -12,7 +12,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         public void PrikaziIzbornik()
         {
-            Console.WriteLine("Izbornik za rad s smjerovnima");
+            Console.WriteLine("Izbornik za rad s smjerovima");
             Console.WriteLine("1. Pregled svih smjerova");
             Console.WriteLine("2. Unos novog smjera");
             Console.WriteLine("3. Promjena podataka postojećeg smjera");
@@ -22,7 +22,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void OdabirOpcijeIzbornika()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberite stavku iz izbornika", 1, 5))
+            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 5))
             {
                 case 1:
                     PrikaziSmjerove();
@@ -41,10 +41,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         {
             Console.WriteLine("*************************************");
             Console.WriteLine("Smjerovi u aplikaciji");
-
             foreach (var s in Smjerovi)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(s); // prepisati metodu toString
             }
             Console.WriteLine("*************************************");
         }
