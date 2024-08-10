@@ -6,9 +6,13 @@ using UcenjeCS.E13KlasaObjekt;
 //BrzaForPetlja.Izvedi();
 //CiklicnaTablica.Izvedi();
 //LjubavniKalkulator.Izvedi();
+//new UcenjeCS.LjetniRad.CiklicnaTablica.Table();
+//new UcenjeCS.LjetniRad.LjubavniKalkulator.Program();
+//new UcenjeCS.LjetniRad.GeneratorLozinki.Program();
+new UcenjeCS.LjetniRad.SocialMediaAPP.Menu();
 
 //Učenje
-new UcenjeCS.E18KonzolnaAplikacija.Izbornik();
+//new UcenjeCS.E18KonzolnaAplikacija.Izbornik();
 //new UcenjeCS.E17Subota.Raspored();
 //new UcenjeCS.E17Subota.Program();
 //new UcenjeCS.E16GenericiLambdaEkstenzije.Program();
