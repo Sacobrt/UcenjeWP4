@@ -1,6 +1,8 @@
 ﻿
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UcenjeCS.E18KonzolnaAplikacija.Model;
 
 namespace UcenjeCS.E18KonzolnaAplikacija
 {
@@ -21,7 +23,13 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void UcitajPodatke()
         {
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+            if (File.Exists(Path.Combine(docPath, "smjerovi.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "smjerovi.json"));
+                ObradaSmjer.Smjerovi = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
+            }
         }
         private void PrikaziIzbornik()
         {
@@ -65,6 +73,11 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             }
 
             //Console.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
+
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "smjerovi.json"));
+            outputFile.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
+            outputFile.Close();
         }
         private void PozdravnaPoruka()
         {

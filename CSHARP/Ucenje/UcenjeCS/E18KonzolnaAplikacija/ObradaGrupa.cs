@@ -42,7 +42,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 4:
-                    ObrisiPoratkeGrupe();
+                    ObrisiGrupu();
                     PrikaziIzbornik();
                     break;
                 case 5:
@@ -50,11 +50,10 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     break;
             }
         }
-        private void ObrisiPoratkeGrupe()
+        private void ObrisiGrupu()
         {
             PrikaziGrupe();
-            var g = Grupe[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu", 1, Grupe.Count) - 1];
-
+            var g = Grupe[Pomocno.UcitajRasponBroja("Odaberi redni broj grupe za brisanje", 1, Grupe.Count) - 1];
             if (Pomocno.UcitajBool("Sigurno obrisati " + g.Naziv + "? (DA/NE)", "da"))
             {
                 Grupe.Remove(g);
@@ -79,16 +78,15 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         {
             Console.WriteLine("*****************************");
             Console.WriteLine("Grupe u aplikaciji");
-            int rb = 0;
+            int rb = 0, rbp;
             foreach (var g in Grupe)
             {
                 Console.WriteLine(++rb + ". " + g.Naziv + " (" + g.Smjer?.Naziv + "), " + g.Polaznici?.Count + " polaznika"); // prepisati metodu toString
-
-                rb = 0;
+                rbp = 0;
                 g.Polaznici.Sort();
                 foreach (var p in g.Polaznici)
                 {
-                    Console.WriteLine("\t" + ++rb + ". " + p.Ime + " " + p.Prezime);
+                    Console.WriteLine("\t" + ++rbp + ". " + p.Ime + " " + p.Prezime);
                 }
             }
             Console.WriteLine("****************************");
@@ -108,10 +106,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             g.MaksimalnoPolaznika = Pomocno.UcitajRasponBroja("Unesi maksimalno polaznika", 1, 30);
             // polaznici
             g.Polaznici = UcitajPolaznike();
-
             Grupe.Add(g);
         }
-        private List<Polaznik>? UcitajPolaznike()
+        private List<Polaznik> UcitajPolaznike()
         {
             List<Polaznik> lista = new List<Polaznik>();
             while (Pomocno.UcitajBool("Za unos polaznika unesi DA", "da"))

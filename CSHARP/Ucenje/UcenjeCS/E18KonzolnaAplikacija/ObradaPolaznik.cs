@@ -49,11 +49,11 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 3:
-                    PromjeniPodatakaPolaznika();
+                    PromjeniPodatakPolaznika();
                     PrikaziIzbornik();
                     break;
                 case 4:
-                    ObrisiPodatakaPolaznika();
+                    ObrisiPolaznika();
                     PrikaziIzbornik();
                     break;
                 case 5:
@@ -61,23 +61,23 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     break;
             }
         }
-        private void ObrisiPodatakaPolaznika()
+        private void ObrisiPolaznika()
         {
             PrikaziPolaznike();
-            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu", 1, Polaznici.Count) - 1];
+            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za brisanje", 1, Polaznici.Count) - 1];
 
-            if(Pomocno.UcitajBool("Sigurno obrisati " + odabrani.Ime + " " + odabrani.Prezime + "? (DA/NE)", "da"))
+            if (Pomocno.UcitajBool("Sigurno obrisati " + odabrani.Ime + " " + odabrani.Prezime + "? (DA/NE)", "da"))
             {
                 Polaznici.Remove(odabrani);
             }
         }
-        private void PromjeniPodatakaPolaznika()
+        private void PromjeniPodatakPolaznika()
         {
             PrikaziPolaznike();
             var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu", 1, Polaznici.Count) - 1];
 
             odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru polaznika", 1, int.MaxValue);
-            odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true);
+            odabrani.Ime = Pomocno.UcitajString(odabrani.Ime, "Unesi ime polaznika", 50, true);
             odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true);
             odabrani.Email = Pomocno.UcitajString("Unesi email polaznika", 50, true);
             odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true);

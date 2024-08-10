@@ -58,7 +58,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         private void ObrisiPostojeciSmjer()
         {
             PrikaziSmjerove();
-            var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za promjenu", 1, Smjerovi.Count) - 1];
+            var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za Brisanje", 1, Smjerovi.Count) - 1];
 
             if (Pomocno.UcitajBool("Sigurno obrisati " + odabrani.Naziv + "? (DA/NE)", "da"))
             {
