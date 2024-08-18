@@ -1,5 +1,4 @@
 ﻿
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UcenjeCS.E18KonzolnaAplikacija.Model;
@@ -13,7 +12,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         public ObradaGrupa ObradaGrupa { get; set; }
         public Izbornik()
         {
-            //Pomocno.DEV = true;
+            Pomocno.DEV = true;
             ObradaSmjer = new ObradaSmjer();
             ObradaPolaznik = new ObradaPolaznik();
             ObradaGrupa = new ObradaGrupa(this);
@@ -33,7 +32,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void PrikaziIzbornik()
         {
-            Console.WriteLine("Glavni izbornik");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n-> GLAVNI IZBORNIK");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("1. Smjerovi");
             Console.WriteLine("2. Polaznici");
             Console.WriteLine("3. Grupe");
@@ -42,7 +43,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void OdabirOpcijeIzbornika()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 4))
+            switch (Pomocno.UcitajRasponBroja("\nOdaberite stavku izbornika", 1, 4))
             {
                 case 1:
                     Console.Clear();
@@ -60,7 +61,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 4:
-                    Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n\tHvala na korištenju aplikacije, doviđenja!\n");
+                    Console.ForegroundColor = ConsoleColor.White;
                     SpremiPodatke();
                     break;
             }
@@ -81,9 +84,11 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void PozdravnaPoruka()
         {
-            Console.WriteLine("*********************************");
-            Console.WriteLine("*** Edunova Console App v 1.0 ***");
-            Console.WriteLine("*********************************");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\t*********************************");
+            Console.WriteLine("\t*** Edunova Console App v 1.0 ***");
+            Console.WriteLine("\t*********************************");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

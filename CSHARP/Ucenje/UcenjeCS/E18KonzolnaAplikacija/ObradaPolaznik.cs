@@ -1,5 +1,4 @@
 ﻿
-using System.Security.Cryptography;
 using UcenjeCS.E18KonzolnaAplikacija.Model;
 
 namespace UcenjeCS.E18KonzolnaAplikacija
@@ -28,7 +27,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         public void PrikaziIzbornik()
         {
-            Console.WriteLine("Izbornik za rad s polaznicima");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n-> IZBORNIK ZA RAD S POLAZNICIMA");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("1. Pregled svih polaznika");
             Console.WriteLine("2. Unos novog polaznika");
             Console.WriteLine("3. Promjena podataka postojećeg polaznika");
@@ -38,7 +39,7 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void OdabirOpcijeIzbornika()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 5))
+            switch (Pomocno.UcitajRasponBroja("\nOdaberite stavku izbornika", 1, 5))
             {
                 case 1:
                     PrikaziPolaznike();
@@ -63,47 +64,96 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         }
         private void ObrisiPolaznika()
         {
+            Console.Clear();
             PrikaziPolaznike();
-            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za brisanje", 1, Polaznici.Count) - 1];
+            if (Polaznici.Count < 1)
+            {
+                PrikaziIzbornik();
+                return;
+            }
+            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("\n\tOdaberi redni broj polaznika za brisanje", 1, Polaznici.Count) - 1];
 
-            if (Pomocno.UcitajBool("Sigurno obrisati " + odabrani.Ime + " " + odabrani.Prezime + "? (DA/NE)", "da"))
+            if (odabrani.Sifra == 0) return;
+            if (Pomocno.UcitajBool("\tSigurno obrisati " + odabrani.Ime + " " + odabrani.Prezime + "? (DA/NE) (Enter za prekid)", "da"))
             {
                 Polaznici.Remove(odabrani);
             }
         }
         private void PromjeniPodatakPolaznika()
         {
+            Console.Clear();
             PrikaziPolaznike();
-            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu", 1, Polaznici.Count) - 1];
+            if (Polaznici.Count < 1)
+            {
+                PrikaziIzbornik();
+                return;
+            }
+            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("\n\tOdaberi redni broj polaznika za promjenu", 1, Polaznici.Count) - 1];
+            var originalSifra = odabrani.Sifra;
 
-            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru polaznika", 1, int.MaxValue);
-            odabrani.Ime = Pomocno.UcitajString(odabrani.Ime, "Unesi ime polaznika", 50, true);
-            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true);
-            odabrani.Email = Pomocno.UcitajString("Unesi email polaznika", 50, true);
-            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true);
+            if (Pomocno.UcitajBool("Želite li promijeniti podatke? (DA/NE)", "da"))
+            {
+                int sifra = Pomocno.UcitajRasponBroja("\tPromjeni šifru polaznika (" + originalSifra + ")", 1, int.MaxValue);
+                while (sifra != originalSifra && Polaznici.Exists(p => p.Sifra == sifra))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\tTa šifra već postoji za nekog polaznika!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    sifra = Pomocno.UcitajRasponBroja("\tPromjeni šifru polaznika (" + originalSifra + ")", 1, int.MaxValue);
+                }
+                odabrani.Sifra = sifra;
+
+                odabrani.Ime = Pomocno.UcitajString(odabrani.Ime, "\tUnesi ime polaznika", 50, true);
+                odabrani.Prezime = Pomocno.UcitajString(odabrani.Prezime, "\tUnesi prezime polaznika", 50, true);
+                odabrani.Email = Pomocno.UcitajString(odabrani.Email, "\tUnesi email polaznika", 50, true);
+                odabrani.OIB = Pomocno.UcitajString(odabrani.OIB, "\tUnesi OIB polaznika", 50, true);
+            }
         }
         public void PrikaziPolaznike()
         {
-            Console.WriteLine("*****************************");
-            Console.WriteLine("Polaznici u aplikaciji");
-            int rb = 0;
-            foreach (var p in Polaznici)
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("-> POLAZNICI U APLIKACIJI");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            if (Polaznici.Count < 1)
             {
-                Console.WriteLine(++rb + ". " + p.Ime + " " + p.Prezime); // prepisati metodu toString
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nema ni jednog polaznika u aplikaciji!");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                return;
             }
-            Console.WriteLine("****************************");
+            else
+            {
+                int rb = 0;
+                foreach (var p in Polaznici)
+                {
+                    Console.WriteLine(++rb + ". " + p.Ime + " " + p.Prezime);
+                }
+            }
         }
         private void UnosNovogPolaznika()
         {
-            Console.WriteLine("***************************");
-            Console.WriteLine("Unesite tražene podatke o polazniku");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("UNESITE TRAŽENE PODATKE O POLAZNIKU");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            int sifra = Pomocno.UcitajRasponBroja("\tUnesi šifru polaznika", 1, int.MaxValue);
+            while (Polaznici.Exists(p => p.Sifra == sifra))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\tTa šifra već postoji za nekog polaznika!");
+                Console.ForegroundColor = ConsoleColor.White;
+                sifra = Pomocno.UcitajRasponBroja("\tUnesi šifru polaznika", 1, int.MaxValue);
+            }
             Polaznici.Add(new()
             {
-                Sifra = Pomocno.UcitajRasponBroja("Unesi šifru polaznika", 1, int.MaxValue),
-                Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true),
-                Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true),
-                Email = Pomocno.UcitajString("Unesi email polaznika", 50, true),
-                OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true)
+                Sifra = sifra,
+                Ime = Pomocno.UcitajString("\tUnesi ime polaznika", 50, true),
+                Prezime = Pomocno.UcitajString("\tUnesi prezime polaznika", 50, true),
+                Email = Pomocno.UcitajString("\tUnesi email polaznika", 50, true),
+                OIB = Pomocno.UcitajString("\tUnesi OIB polaznika", 50, true)
             });
         }
     }

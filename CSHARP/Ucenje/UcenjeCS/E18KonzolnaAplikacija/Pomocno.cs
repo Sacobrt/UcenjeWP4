@@ -6,7 +6,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
         public static bool DEV = false;
         internal static bool UcitajBool(string poruka, string trueValue)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(poruka + ": ");
+            Console.ForegroundColor = ConsoleColor.White;
             return Console.ReadLine().Trim().ToLower() == trueValue;
         }
         internal static DateTime UcitajDatum(string poruka, bool kontrolaPrijeDanasnjegDatuma)
@@ -16,13 +18,19 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Format unosa je yyyy-MM-dd, za današnji datum {0}",
                         DateTime.Now.ToString("yyyy-MM-dd"));
+                    Console.ForegroundColor = ConsoleColor.White;
                     if (kontrolaPrijeDanasnjegDatuma)
                     {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Uneseni datum ne smije biti prije današnjeg datuma!");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(poruka + ": ");
+                    Console.ForegroundColor = ConsoleColor.White;
                     d = DateTime.Parse(Console.ReadLine());
                     if (kontrolaPrijeDanasnjegDatuma && d < DateTime.Now)
                     {
@@ -32,7 +40,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                 }
                 catch
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Unos datuma nije dobar");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
@@ -43,7 +53,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(poruka + ": ");
+                    Console.ForegroundColor = ConsoleColor.White;
                     b = float.Parse(Console.ReadLine());
                     if (b < min || b > max)
                     {
@@ -53,7 +65,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                 }
                 catch
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Decimalni broj mora biti u rasponu {0} i {1}", min, max);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
@@ -64,7 +78,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(poruka + ": ");
+                    Console.ForegroundColor = ConsoleColor.White;
                     b = int.Parse(Console.ReadLine());
                     if (b < min || b > max)
                     {
@@ -74,7 +90,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                 }
                 catch
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Unos nije dobar, unos mora biti u rasponu {0} do {1}", min, max);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
@@ -83,11 +101,15 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             string s;
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(poruka + ": ");
+                Console.ForegroundColor = ConsoleColor.White;
                 s = Console.ReadLine().Trim();
                 if ((obavezno && s.Length == 0) || s.Length > max)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Unos obavezan, maksimalno dozvoljeno {0} znakova", max);
+                    Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
                 return s;
@@ -98,7 +120,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
             string s;
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(poruka + " (" + stara + "): ");
+                Console.ForegroundColor = ConsoleColor.White;
                 s = Console.ReadLine().Trim();
                 if (s.Length == 0)
                 {
@@ -106,7 +130,9 @@ namespace UcenjeCS.E18KonzolnaAplikacija
                 }
                 if ((obavezno && s.Length == 0) || s.Length > max)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Unos obavezan, maksimalno dozvoljeno {0} znakova", max);
+                    Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
                 return s;
