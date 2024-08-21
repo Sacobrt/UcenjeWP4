@@ -169,7 +169,7 @@ namespace UcenjeCS.LjetniRad.SocialMediaAPP.Controllers
                 ShowMenu();
                 return;
             }
-            var selected = Comments[Pomocno.UcitajCijeliBroj("Odaberi redni broj komentara za brisanje", 1, Comments.Count) - 1];
+            var selected = Comments[Helpers.NumberInput("Odaberi redni broj komentara za brisanje", 1, Comments.Count) - 1];
 
             if (selected.ID == 0) return;
             if (Helpers.BoolInput("Sigurno obrisati " + selected.Content + "? (DA/NE) (ENTER za prekid)", "da"))
