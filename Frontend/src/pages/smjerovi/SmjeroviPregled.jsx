@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import moment from "moment";
 import { GrValidate } from "react-icons/gr";
+import { Link } from "react-router-dom";
+import { RoutesNames } from "../../constants";
 
 export default function SmjeroviPregled() {
 
@@ -49,6 +51,7 @@ export default function SmjeroviPregled() {
 
     return (
         <Container>
+            <Link to={RoutesNames.SMJER_NOVI}>Dodaj novi smjer</Link>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
