@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import moment from "moment";
 import { GrValidate } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 
 export default function SmjeroviPregled() {
 
     const  [smjerovi, setSmjerovi] = useState();
+    const navigate = useNavigate();
 
     async function dohvatiSmjerove() {
         await SmjerService.get()
@@ -91,6 +92,12 @@ export default function SmjeroviPregled() {
                                 color={vaucer(smjer.vaucer)}/>
                             </td>
                             <td>
+                                <Button
+                                variant="primary"
+                                onClick={() => navigate(`/smjerovi/${smjer.sifra}`)}>
+                                    Promjeni
+                                </Button>
+                                &nbsp;&nbsp;&nbsp;
                                 <Button
                                 variant="danger"
                                 onClick={() => obrisi(smjer.sifra)}>
