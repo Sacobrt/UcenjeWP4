@@ -1,4 +1,4 @@
-import { Container, Table } from "react-bootstrap"
+import { Button, Container, Table } from "react-bootstrap"
 import SmjerService from "../../services/SmjerService"
 import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
@@ -32,6 +32,19 @@ export default function SmjeroviPregled() {
         if(v == null) return 'gray';
         if(v) return 'green';
         return 'red';
+    }
+
+    async function obrisiAsync(sifra) {
+        const odgovor = await SmjerService.obrisi(sifra);
+        if(odgovor.greska) {
+            alert(odgovor.poruka)
+            return;
+        }
+        dohvatiSmjerove();
+    }
+
+    function obrisi(sifra) {
+        obrisiAsync(sifra);
     }
 
     return (
@@ -74,7 +87,13 @@ export default function SmjeroviPregled() {
                                 size={30}
                                 color={vaucer(smjer.vaucer)}/>
                             </td>
-                            <td>{smjer.sifra}</td>
+                            <td>
+                                <Button
+                                variant="danger"
+                                onClick={() => obrisi(smjer.sifra)}>
+                                    Obriši
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
