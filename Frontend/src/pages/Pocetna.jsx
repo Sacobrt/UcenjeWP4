@@ -1,9 +1,10 @@
-import { Container } from "react-bootstrap";
 
-export default function Pocetna() {
-    return (
-        <Container>
+
+
+export default function Pocetna(){
+    return(
+        <>
             Dobrodošli, kasnije će biti nešto pametnije ovdje!
-        </Container>
+            </>
     )
 }

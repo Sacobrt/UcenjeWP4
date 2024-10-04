@@ -2,7 +2,7 @@ import { HttpService } from "./HttpService"
 
 
 async function get(){
-    return await HttpService.get('/Smjer')
+    return await HttpService.get('/Polaznik')
     .then((odgovor)=>{
         //console.table(odgovor.data);
         return odgovor.data;
@@ -11,28 +11,28 @@ async function get(){
 }
 
 async function getBySifra(sifra){
-    return await HttpService.get('/Smjer/' + sifra)
+    return await HttpService.get('/Polaznik/' + sifra)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
     })
     .catch(()=>{
-        return {greska: true, poruka: 'Ne postoji smjer!'}
+        return {greska: true, poruka: 'Ne postoji Polaznik!'}
     })
 }
 
 async function obrisi(sifra) {
-    return await HttpService.delete('/Smjer/' + sifra)
+    return await HttpService.delete('/Polaznik/' + sifra)
     .then((odgovor)=>{
         //console.log(odgovor);
         return {greska: false, poruka: odgovor.data}
     })
     .catch(()=>{
-        return {greska: true, poruka: 'Smjer se ne može obrisati!'}
+        return {greska: true, poruka: 'Polaznik se ne može obrisati!'}
     })
 }
 
-async function dodaj(smjer) {
-    return await HttpService.post('/Smjer',smjer)
+async function dodaj(Polaznik) {
+    return await HttpService.post('/Polaznik',Polaznik)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
     })
@@ -45,13 +45,13 @@ async function dodaj(smjer) {
                 }
                 return {greska: true, poruka: poruke}
             default:
-                return {greska: true, poruka: 'Smjer se ne može dodati!'}
+                return {greska: true, poruka: 'Polaznik se ne može dodati!'}
         }
     })
 }
 
-async function promjena(sifra,smjer) {
-    return await HttpService.put('/Smjer/' + sifra,smjer)
+async function promjena(sifra,Polaznik) {
+    return await HttpService.put('/Polaznik/' + sifra,Polaznik)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
     })
@@ -62,12 +62,21 @@ async function promjena(sifra,smjer) {
                 for(const kljuc in e.response.data.errors){
                     poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + '\n';
                 }
-                console.log(poruke)
                 return {greska: true, poruka: poruke}
             default:
-                return {greska: true, poruka: 'Smjer se ne može promjeniti!'}
+                return {greska: true, poruka: 'Polaznik se ne može promjeniti!'}
         }
     })
+}
+
+
+async function traziPolaznik(uvjet){
+    return await HttpService.get('/Polaznik/trazi/'+uvjet)
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{return {greska: true, poruka: 'Problem kod traženja polaznika'}})
 }
 
 export default{
@@ -75,5 +84,7 @@ export default{
     getBySifra,
     obrisi,
     dodaj,
-    promjena
+    promjena,
+
+    traziPolaznik
 }
