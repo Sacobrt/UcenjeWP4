@@ -9,13 +9,13 @@ namespace EdunovaAPP.Controllers
 
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class SmjerController(EdunovaContext context, IMapper mapper) : EdunovaController(context, mapper)
+    public class PolaznikController(EdunovaContext context, IMapper mapper) : EdunovaController(context, mapper)
     {
 
 
         // RUTE
         [HttpGet]
-        public ActionResult<List<SmjerDTORead>> Get()
+        public ActionResult<List<PolaznikDTORead>> Get()
         {
             if (!ModelState.IsValid)
             {
@@ -23,7 +23,7 @@ namespace EdunovaAPP.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<SmjerDTORead>>(_context.Smjerovi));
+                return Ok(_mapper.Map<List<PolaznikDTORead>>(_context.Polaznici));
             }
             catch (Exception ex)
             {
@@ -35,16 +35,16 @@ namespace EdunovaAPP.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<SmjerDTORead> GetBySifra(int sifra)
+        public ActionResult<PolaznikDTORead> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
-            Smjer? e;
+            Polaznik? e;
             try
             {
-                e = _context.Smjerovi.Find(sifra);
+                e = _context.Polaznici.Find(sifra);
             }
             catch (Exception ex)
             {
@@ -52,14 +52,14 @@ namespace EdunovaAPP.Controllers
             }
             if (e == null)
             {
-                return NotFound(new { poruka = "Smjer ne postoji u bazi" });
+                return NotFound(new { poruka = "Polaznik ne postoji u bazi" });
             }
 
-            return Ok(_mapper.Map<SmjerDTORead>(e));
+            return Ok(_mapper.Map<PolaznikDTORead>(e));
         }
 
         [HttpPost]
-        public IActionResult Post(SmjerDTOInsertUpdate dto)
+        public IActionResult Post(PolaznikDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
@@ -67,10 +67,10 @@ namespace EdunovaAPP.Controllers
             }
             try
             {
-                var e = _mapper.Map<Smjer>(dto);
-                _context.Smjerovi.Add(e);
+                var e = _mapper.Map<Polaznik>(dto);
+                _context.Polaznici.Add(e);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, _mapper.Map<SmjerDTORead>(e));
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<PolaznikDTORead>(e));
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace EdunovaAPP.Controllers
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, SmjerDTOInsertUpdate dto)
+        public IActionResult Put(int sifra, PolaznikDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
@@ -92,10 +92,10 @@ namespace EdunovaAPP.Controllers
             }
             try
             {
-                Smjer? e;
+                Polaznik? e;
                 try
                 {
-                    e = _context.Smjerovi.Find(sifra);
+                    e = _context.Polaznici.Find(sifra);
                 }
                 catch (Exception ex)
                 {
@@ -103,12 +103,12 @@ namespace EdunovaAPP.Controllers
                 }
                 if (e == null)
                 {
-                    return NotFound(new { poruka = "Smjer ne postoji u bazi" });
+                    return NotFound(new { poruka = "Polaznik ne postoji u bazi" });
                 }
 
                 e = _mapper.Map(dto, e);
 
-                _context.Smjerovi.Update(e);
+                _context.Polaznici.Update(e);
                 _context.SaveChanges();
 
                 return Ok(new { poruka = "Uspješno promjenjeno" });
@@ -131,10 +131,10 @@ namespace EdunovaAPP.Controllers
             }
             try
             {
-                Smjer? e;
+                Polaznik? e;
                 try
                 {
-                    e = _context.Smjerovi.Find(sifra);
+                    e = _context.Polaznici.Find(sifra);
                 }
                 catch (Exception ex)
                 {
@@ -142,9 +142,9 @@ namespace EdunovaAPP.Controllers
                 }
                 if (e == null)
                 {
-                    return NotFound("Smjer ne postoji u bazi");
+                    return NotFound("Polaznik ne postoji u bazi");
                 }
-                _context.Smjerovi.Remove(e);
+                _context.Polaznici.Remove(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno obrisano" });
             }
@@ -154,6 +154,32 @@ namespace EdunovaAPP.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("trazi/{uvjet}")]
+        public ActionResult<List<PolaznikDTORead>> TraziPolaznik(string uvjet)
+        {
+            if (uvjet == null || uvjet.Length < 3)
+            {
+                return BadRequest(ModelState);
+            }
+            uvjet = uvjet.ToLower();
+            try
+            {
+                IEnumerable<Polaznik> query = _context.Polaznici;
+                var niz = uvjet.Split(" ");
+                foreach (var s in uvjet.Split(" "))
+                {
+                    query = query.Where(p => p.Ime.ToLower().Contains(s) || p.Prezime.ToLower().Contains(s));
+                }
+                var polaznici = query.ToList();
+                return Ok(_mapper.Map<List<PolaznikDTORead>>(polaznici));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { poruka = e.Message });
+            }
+        }
 
 
     }
